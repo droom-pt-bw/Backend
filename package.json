@@ -1,0 +1,17 @@
+{
+  "name": "droom-backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/droom-pt-bw/Backend.git",
+  "author": "Dionuta Burton & James Bieber",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^8.0.0",
+    "knex": "^0.18.3",
+    "sqlite3": "^4.0.9"
+  },
+  "devDependencies": {
+    "jest": "^24.8.0",
+    "nodemon": "^1.19.1"
+  }
+}
