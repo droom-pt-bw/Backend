@@ -83,5 +83,5 @@ typings/
 # DynamoDB Local files
 .dynamodb/
 
-# Dev datbase
+# Dev database
 *.sqlite3
