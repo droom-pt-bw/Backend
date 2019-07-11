@@ -15,7 +15,7 @@ exports.up = function(knex, Promise) {
         .notNullable()
         .unique();
       tbl
-        .boolean('type') //true is company fale basic user 
+        .boolean('isCompany') //true is company fale basic user 
         .notNullable();
       tbl.datetime('createdAt').defaultTo(knex.fn.now());
     });
