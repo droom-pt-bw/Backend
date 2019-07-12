@@ -2,7 +2,6 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { jwtSecret } = require("../config/secrets");
 const db = require("../data/dbConfig");
-const user = require("../api/helpers/userModel");
 
 module.exports = server => {
   server.post("/login", login);
