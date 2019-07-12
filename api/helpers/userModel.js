@@ -9,3 +9,4 @@ module.exports= {
 function getUsers() {
     return db('users');
 }
+
