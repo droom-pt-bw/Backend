@@ -85,3 +85,4 @@ typings/
 
 # Dev database
 *.sqlite3
+*.db3
