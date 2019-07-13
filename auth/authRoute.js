@@ -15,7 +15,7 @@ function generateToken(user) {
     },
     jwtSecret,
     {
-      expiresIn: "1h"
+      expiresIn: "1d"
     }
   );
 }
