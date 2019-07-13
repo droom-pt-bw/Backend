@@ -8,6 +8,18 @@ module.exports = server => {
   server.post("/register", register);
 };
 
+function generateToken(user) {
+  return jwt.sign(
+    {
+      userId: user.id
+    },
+    jwtSecret,
+    {
+      expiresIn: "1h"
+    }
+  );
+}
+
 function login(req, res) {
   const creds = req.body;
   db("users")
@@ -15,7 +27,7 @@ function login(req, res) {
     .first()
     .then(user => {
       if (user && bcrypt.compareSync(creds.password, user.password)) {
-        const token = jwt.sign({ id: user.id }, jwtSecret, { expiresIn: "1d" });
+        const token = generateToken(user);
         const isCompany = Boolean(user.isCompany);
         res.status(200).json({ message: "Welcome!", token, isCompany });
       } else {
