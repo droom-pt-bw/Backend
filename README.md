@@ -17,7 +17,7 @@ The request body requires a username, password, email, and isCompany (Boolean). 
   "username": "bob", 
   "password": "pass123",
   "email": "bob_smith123@gmail.com",
-  "isCompany": "False"
+  "isCompany": false
 }
 ```
 
