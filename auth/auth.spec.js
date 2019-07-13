@@ -24,7 +24,7 @@ describe('authRoutes', () => {
               const res = await request(server).post('/login').send(newUser);
               expect(res.body).toEqual({message: "NO NO NO"})
         })
-        it("should return 'Welcome!' if user is found", async () =>{
+        it("should return 200 is user is in test DB", async () =>{
             const testUser = {
                 username: "John", 
                 password: "something"
