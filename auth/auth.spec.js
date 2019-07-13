@@ -5,9 +5,7 @@ const db = require("../data/dbConfig");
 
 describe('authRoutes', () => {
 
-    afterEach(async () => {
-        await db("users").truncate();
-      });
+   
 
     describe("login", () => {
         it("should return 401 info is not in db ", async () =>{
@@ -25,6 +23,17 @@ describe('authRoutes', () => {
               };
               const res = await request(server).post('/login').send(newUser);
               expect(res.body).toEqual({message: "NO NO NO"})
+        })
+        it("should return 'Welcome!' if user is found", async () =>{
+            const testUser = {
+                username: "John", 
+                password: "something"
+              };
+              const res = await request(server)
+                 .post('/login')
+                 .send(testUser)
+                 .set('Content-Type', 'application/json');
+              expect(res.status).toEqual(200)
         })
     })
 })
