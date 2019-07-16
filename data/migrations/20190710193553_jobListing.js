@@ -18,9 +18,9 @@ exports.up = async function(knex) {
         .notNullable();
       tbl.datetime('createdAt').defaultTo(knex.fn.now());
       tbl
-      .integer("company_id")
+      .integer("user_id")
       .references("id")
-      .inTable("companies")
+      .inTable("users")
       .onDelete("CASCADE")
       .onUpdate("CASCADE")
       .notNullable();
