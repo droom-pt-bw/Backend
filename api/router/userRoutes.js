@@ -77,4 +77,20 @@ router.delete("/listing/:id", authenticate, async (req, res) => {
   }
 });
 
+router.get("/:id/listing", authenticate, async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const jobs = await users.getJoblistings(id);
+
+    if (jobs.length) {
+      res.json(jobs);
+    } else {
+      res.status(404).json({ err: "no listings for this user" });
+    }
+  } catch (err) {
+    res.status(500).json({ err });
+  }
+});
+
 module.exports = router;
