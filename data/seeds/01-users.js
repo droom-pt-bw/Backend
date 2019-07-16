@@ -17,7 +17,7 @@ exports.seed = async function(knex) {
     },
     {
       id: 2,
-      username: "Mind Corp",
+      username: "Mind-Corp",
       password: hashPassword(jwtSecret),
       email:"somethingelse@something.com",
       isCompany: true,
