@@ -1,5 +1,5 @@
-exports.up = function(knex, Promise) {
-    return knex.schema.createTable('joblisting', tbl => {
+exports.up = async function(knex) {
+    await knex.schema.createTable('joblisting', tbl => {
     tbl.increments("id");
       tbl
         .string('company', 255)
@@ -17,9 +17,16 @@ exports.up = function(knex, Promise) {
         .string("description")
         .notNullable();
       tbl.datetime('createdAt').defaultTo(knex.fn.now());
+      tbl
+      .integer("company_id")
+      .references("id")
+      .inTable("companies")
+      .onDelete("CASCADE")
+      .onUpdate("CASCADE")
+      .notNullable();
     });
   };
   
-  exports.down = function(knex, Promise) {
-    return knex.schema.dropTableIfExists('joblisting');
+  exports.down = async function(knex, Promise) {
+    await knex.schema.dropTableIfExists('joblisting');
   };

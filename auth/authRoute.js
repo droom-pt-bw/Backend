@@ -22,6 +22,7 @@ function generateToken(user) {
 
 function login(req, res) {
   const creds = req.body;
+  const {id, username} = req.body;
   db("users")
     .where({ username: creds.username })
     .first()
@@ -29,7 +30,7 @@ function login(req, res) {
       if (user && bcrypt.compareSync(creds.password, user.password)) {
         const token = generateToken(user);
         const isCompany = Boolean(user.isCompany);
-        res.status(200).json({ message: "Welcome!", token, isCompany });
+        res.status(200).json({ message: "Welcome!", id, username, token, isCompany });
       } else {
         res.status(401).json({ message: "NO NO NO" });
       }

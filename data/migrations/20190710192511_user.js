@@ -1,5 +1,6 @@
-exports.up = function(knex, Promise) {
-    return knex.schema.createTable('users', tbl => {
+exports.up = async function(knex) {
+
+    await knex.schema.createTable('users', tbl => {
       tbl.increments("id");
       tbl
         .string('username', 255)
@@ -17,8 +18,25 @@ exports.up = function(knex, Promise) {
         .notNullable();
       tbl.datetime('createdAt').defaultTo(knex.fn.now());
     });
+
+    await knex.schema.createTable("companies", tbl => {
+      tbl.increments("id");
+      tbl
+        .string("name")
+        .notNullable();
+      tbl
+        .string("description")
+      tbl
+        .integer("user_id")
+        .references("id")
+        .inTable("users")
+        .onDelete("CASCADE")
+        .onUpdate("CASCADE")
+        .notNullable();
+    });
   };
   
-  exports.down = function(knex, Promise) {
-    return knex.schema.dropTableIfExists('users');
+  exports.down = async function(knex) {
+    await knex.schema.dropTableIfExists('companies');
+    await knex.schema.dropTableIfExists('users');
   }; 
