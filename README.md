@@ -4,12 +4,7 @@
 To run locally: use `npm start` or `yarn start`
 Server will run on port 5000
 
-The deployed API can be found here: [Droom API](https://address...----) Not implemented yet.
-
-### Endpoints
-
-#### Login 
-`POST` to `/login`
+The deployed API can be found here: [Droom API](https://droom-pt-bw.herokuapp.com/) Not implemented yet.
 
 #### Description
 
@@ -19,21 +14,35 @@ The receieved token will be used to access protected routes. Refer to the indivi
 
 #### Operation and Schemas
 
-- POST
+---
 
-**Body Schema**:
-
-```js
+#### Register a new user
+`POST` to `/register`
+The request body requires a username, password, email, and isCompany (Boolean). : 
+```
 {
-    "username": string,
-    "password": string
+  "username": "bob", 
+  "password": "pass123",
+  "email": "bob_smith123@gmail.com",
+  "isCompany": false
 }
 ```
+
+#### Login user
+`POST` to `/login`
+The request body requires username, and password.
+```
+{
+  "username": "bob",
+  "password": "pass123"
+}
+```
+
 **Output Schema**:
 
 - 200 Success
 
-```js
+```
 {
     "message": "Welcome!",
     "token": string,
@@ -51,17 +60,68 @@ Credentials invalid.
 
 ---
 
-#### Register a new user
-`POST` to `/register`
-The request body requires a username, password, email, and isCompany (Boolean). : 
+#### Create job listing
+`POST` to `/listing`
+The request body requires a company, location, salary(string), jobtitle, and description. :
 ```
 {
-  "username": "bob", 
-  "password": "pass123",
-  "email": "bob_smith123@gmail.com",
-  "isCompany": false
+    "company": "Lambda School",
+    "location": "San Francisco",
+    "salary": "$530,000"
+    "jobtitle": "Team Leader",
+    "description": "Lead and help guide a group of students through the curriculum"
 }
 ```
+
+**Output Schema**:
+
+- 201 Success
+
+```
+{
+    "company": "Lambda School",
+    "location": "San Francisco",
+    "salary": "$530,000"
+    "jobtitle": "Team Leader",
+    "description": "Lead and help guide a group of students through the curriculum"
+}
+```
+
+---
+
+#### Update job listing
+`PUT` to `/listing/:id`
+The request body requires a company, location, salary(string), jobtitle, and description. :
+```
+{
+    "company": "Lambda School",
+    "location": "San Francisco",
+    "salary": "$530,000"
+    "jobtitle": "Team Leader",
+    "description": "Lead and help guide a group of students through the curriculum"
+}
+```
+
+**Output Schema**:
+
+- 201 Success
+
+```
+{
+    "company": "Lambda School",
+    "location": "San Francisco",
+    "salary": "$530,000"
+    "jobtitle": "Team Leader",
+    "description": "Lead and help guide a group of students through the curriculum"
+}
+```
+
+#### Delete job listing
+`DELETE` to `/listing/:id`
+The request body requires just an id in the parameters. :
+```https://droom-pt-bw.herokuapp.com/listing/3```
+
+---
 
 #### Get the full list users
 `GET` to `/users`
