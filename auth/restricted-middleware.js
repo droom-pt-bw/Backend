@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 
 const jwtKey =
   process.env.JWT_SECRET ||
-  'Pizza Pizza';
+  "something";
 
 
 module.exports = {

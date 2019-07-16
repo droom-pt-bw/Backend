@@ -2,9 +2,9 @@
 const express = require("express");
 const router = express.Router();
 const jobListing = require("../helpers/joblistingModel");
+const  {authenticate} = require("../../auth/restricted-middleware");
 
-
-router.get("/", async (req, res) => {
+router.get("/", authenticate, async (req, res) => {
     try {
      const listing = await jobListing.findJobs()
      res.status(200).json(listing)

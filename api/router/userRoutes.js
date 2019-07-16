@@ -2,9 +2,9 @@
 const express = require("express");
 const router = express.Router();
 const users = require("../helpers/userModel");
+const  {authenticate} = require("../../auth/restricted-middleware");
 
-
-router.get("/", async (req, res) => {
+router.get("/", authenticate, async (req, res) => {
     try {
      const user = await users.getUsers()
      res.status(200).json(user)
