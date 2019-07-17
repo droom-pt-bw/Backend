@@ -93,4 +93,111 @@ router.get("/:id/listing", authenticate, async (req, res) => {
   }
 });
 
+
+
+
+// *************************** SEEKER AND COMPANY ENDPOINTS ********************************* //
+
+router.get("/uinfo/:id", authenticate, async (req, res) => {
+  const {id} = req.params
+  
+  try {
+    const info = await users.getSeekerInfo(id);
+
+    if(info) {
+      res.status(201).json(info);
+    } else {
+      res.status(401).json({err: "No information for this profile."})
+    }
+  }
+  catch(error) {
+    res.status(404).json(error);
+  }
+})
+
+router.get("/cinfo/:id", authenticate, async (req, res) => {
+  const {id} = req.params
+  
+  try {
+    const info = await users.getCompanyInfo(id);
+
+    if(info) {
+      res.status(201).json(info)
+    } else {
+      res.status(401).json({err: "No information for this profile."})
+    }
+  }
+  catch(error) {
+    res.status(404).json(error);
+  }
+})
+
+router.post("/uinfo/", authenticate, async (req, res) => {
+  const post = req.body
+  
+  try {
+    const info = await users.addSeekerInfo(post);
+
+    if(info) {
+      res.status(201).json(info)
+    } else {
+      res.status(401).json({err: "Couldn't add profile information."})
+    }
+  }
+  catch(error) {
+    res.status(404).json(error)
+  }
+})
+
+router.post("/cinfo", authenticate, async (req, res) => {
+  const post = req.body
+  
+  try {
+    const info = await users.addCompanyInfo(post);
+
+    if(info) {
+      res.status(201).json(info)
+    } else {
+      res.status(401).json({err: "Couldn't add profile information."})
+    }
+  }
+  catch(error) {
+    res.status(404).json(error)
+  }
+})
+
+router.put("/uinfo/:id", authenticate, async (req, res) => {
+  const changes = req.body
+
+  try {
+    const info = await users.updateSeekerInfo(req.params.id, changes)
+
+    if(info) {
+      res.status(201).json(info)
+    } else {
+      res.status(401).json({err: "Couldn't update profile information."})
+    }
+  }
+  catch(error) {
+    res.status(404).json(error)
+  }
+})
+
+router.put("/cinfo/:id", authenticate, async (req, res) => {
+  const changes = req.body
+
+  try {
+    const info = await users.updateCompanyInfo(req.params.id, changes)
+
+    if(info) {
+      res.status(201).json(info)
+    } else {
+      res.status(401).json({err: "Couldn't update profile information."})
+    }
+  }
+  catch(error) {
+    res.status(404).json(error)
+  }
+})
+
 module.exports = router;
