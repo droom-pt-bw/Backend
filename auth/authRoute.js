@@ -40,7 +40,7 @@ function login(req, res) {
 
 function register(req, res) {
   const creds = req.body;
-  if (!creds.username || !creds.password || !creds.email || creds.isCompany) {
+  if (!creds.username || !creds.password || !creds.email) {
     res
       .status(400)
       .json({ message: "Please ensure required parameters are entered." });

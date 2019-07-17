@@ -4,8 +4,13 @@ const db = require("../../data/dbConfig");
 module.exports = {
     getUsers,
     getById,
-    update,
-    getJoblistings
+    getSeekerInfo,
+    getCompanyInfo,
+    updateCompanyInfo,
+    updateSeekerInfo,
+    getJoblistings,
+    addCompanyInfo,
+    addSeekerInfo,
 
 }
 
@@ -26,11 +31,53 @@ function getById(id) {
     return db('users').where({id}).first();
 }
 
-function update(id, changes) {
-    return db('users')
+function addSeekerInfo(info) {
+    return db('seekers')
+        .insert(info)
+        .then(ids => {
+            return getById(ids[0]);
+        })
+}
+
+function addCompanyInfo(info) {
+    return db('companies')
+        .insert(info)
+        .then(ids => {
+            return getById(ids[0]);
+        })
+}
+
+function updateSeekerInfo(id, changes) {
+    return db('seekers')
+        .where({id})
+        .update(changes, '*')
+}
+
+function updateCompanyInfo(id, changes) {
+    return db('companies')
         .where({id})
         .update(changes, '*')
 }
 
 
+function getSeekerInfo(userId) {
+    return db('seekers as s')
+        .join('users', 's.user_id', 'users.id')
+        .select('s.id as id', 's.name', 's.description', 's.location', 's.skills', 'users.id as user_id')
+        .where({ "s.id": userId });
+}
 
+function getCompanyInfo(userId) {
+    return db('companies as c')
+        .join('users', 'c.user_id', 'users.id')
+        .select('c.id as id', 'c.name', 'c.description', 'users.id as user_id')
+        .where({ "c.id": userId });
+}
+
+
+function findSeeker(id) {
+    return db('seekers as s')
+        .where({'field': `${id}`})
+        .join('comapnies', 's.user_id', '')
+        .map(seeker)
+}
