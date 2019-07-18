@@ -6,6 +6,8 @@ const cors = require('cors');
 const jobListing = require("../api/router/joblistingRoute");
 const seekers = require("../api/router/seekers");
 const companies = require("../api/router/companyRoute");
+const match = require("../api/router/matchRouter")
+const matched = require("../api/router/getMatchesRouter")
 const users = require("../api/router/userRoutes");
 const authRoutes = require("../auth/authRoute");
 
@@ -18,7 +20,9 @@ authRoutes(server);
 server.use("/listings", jobListing);
 server.use("/users", users);
 server.use("/companies", companies);
+server.use("/matched", matched)
 server.use("/seekers", seekers);
+server.use("/match", match)
 
 
 
