@@ -24,6 +24,7 @@ exports.up = async function(knex) {
       .onDelete("CASCADE")
       .onUpdate("CASCADE")
       .notNullable();
+      
     });
   };
   
