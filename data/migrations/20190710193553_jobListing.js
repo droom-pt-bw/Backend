@@ -18,15 +18,29 @@ exports.up = async function(knex) {
         .notNullable();
       tbl.datetime('createdAt').defaultTo(knex.fn.now());
       tbl
-      .integer("user_id")
-      .references("id")
-      .inTable("users")
-      .onDelete("CASCADE")
-      .onUpdate("CASCADE")
-      .notNullable();
-      
+        .integer("user_id")
+        .references("id")
+        .inTable("users")
+        .onDelete("CASCADE")
+        .onUpdate("CASCADE")
+        .notNullable();
+      tbl
+          .string('appliers')
+          .references('id')
+          .inTable('users')
+          .onUpdate('CASCADE')
+          .onDelete('RESTRICT')
+
+      tbl
+          .string('confirmed')
+          .references('id')
+          .inTable('users')
+          .onUpdate('CASCADE')
+          .onDelete('RESTRICT')
+          
     });
   };
+  
   
   exports.down = async function(knex, Promise) {
     await knex.schema.dropTableIfExists('joblisting');

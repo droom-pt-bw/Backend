@@ -200,4 +200,24 @@ router.put("/cinfo/:id", authenticate, async (req, res) => {
   }
 })
 
+router.put("/listing/:id", authenticate, async (req, res) => {
+    try {
+      const lis = await listing.update(req.params.id, req.body);
+      if (lis ) {
+        res.status(200).json(lis);
+      } else {
+        res.status(404).json({ message: "The job listing could not be found" });
+      }
+    } catch (error) {
+      // log error to database
+      console.log(error);
+      res.status(500).json({
+        message: "Error updating the listing"
+      });
+    }
+  });
+  
+
+router.put("")
+
 module.exports = router;
