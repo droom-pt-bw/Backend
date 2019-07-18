@@ -211,6 +211,98 @@ The request body requires a name, location, user_id, description, and skills. :
  {
     "message": "Seeker has been nuked"
  }
+ ```
+
+ ### Company
+
+#### Description
+
+This endpoint is responsible all CRUD operations related to companies . A user must be logged in and isCompany should be true. 
+
+#### Create Company
+
+`POST` to `/companies`
+The request body requires a name, location, user_id and description. :
+```
+ {
+       "name":"Mind-Corp",
+       "location":"Austin, TX",
+       "description":"something",
+       "user_id": 1,
+ }
+```
+**Output Schema**:
+
+- 201 Success
+
+```
+{
+       "name":"Mind-Corp",
+       "location":"Austin, TX",
+       "description":"something",
+       "user_id": 1,
+ }
+```
+
+#### GET Company
+
+`GET` to `/companies/:user_id`
+
+You can use user id to look for a company profile.
+
+**Output Schema**:
+
+```
+{    
+    "id: 1
+    "name":"Mind-Corp",
+    "location":"Austin, TX",
+    "description":"something",
+    "user_id": 1,
+}
+```
+
+#### Update Company
+
+`PUT` to `/companies`
+The request body requires a name, location, user_id and description. :
+```
+{    
+    "name":"Mind Corp",
+    "location":"Austin, TX",
+    "description":"something",
+    "user_id": 1,
+}
+```
+
+**Output Schema**:
+
+```
+ {
+    "name":"Mind Corp",
+    "location":"Austin, TX",
+    "description":"something",
+    "user_id": 1,
+ }
+```
+
+#### Remove Company
+
+`DELETE` to `/companies/:user_id`
+
+**Output Schema**:
+ ```
+ {
+    "message": "Company has been nuked"
+ }
+ ```
+
+#### Get the full list users
+`GET` to `/users`
+
+#### Get the full list listings
+`GET` to `/listings`
+
 
 #### Get the full list users
 `GET` to `/users`
