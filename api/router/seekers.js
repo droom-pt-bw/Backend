@@ -1,8 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const seekers = require("../../api/helpers/seekerModel")
-const  {authenticate} = require("../../auth/restricted-middleware");
-const {seekerValidation} = require("../../api/MW/seekerMW")
+
 
 
 router.post('/', async (req, res) => {
