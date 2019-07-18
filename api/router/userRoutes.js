@@ -1,7 +1,7 @@
 
 const express = require("express");
 const router = express.Router();
-const users = require("../helpers/userModel");
+const users = require("../../api/helpers/userModel");
 const listings = require("../helpers/joblistingModel")
 const  {authenticate} = require("../../auth/restricted-middleware");
 
