@@ -11,6 +11,7 @@ module.exports = {
     getJoblistings,
     addCompanyInfo,
     addSeekerInfo,
+    findUsername
 
 }
 
@@ -80,4 +81,9 @@ function findSeeker(id) {
         .where({'field': `${id}`})
         .join('comapnies', 's.user_id', '')
         .map(seeker)
+}
+
+
+function findUsername(db, username){
+    return db(`${db}`).where({username}).first();
 }

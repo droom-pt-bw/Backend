@@ -2,6 +2,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { jwtSecret } = require("../config/secrets");
 const db = require("../data/dbConfig");
+const users = require("../api/helpers/userModel")
 
 module.exports = server => {
   server.post("/login", login);
@@ -22,15 +23,16 @@ function generateToken(user) {
 
 function login(req, res) {
   const creds = req.body;
-  const {id, username} = req.body;
+  const {username} = req.body;
   db("users")
     .where({ username: creds.username })
+     
     .first()
     .then(user => {
       if (user && bcrypt.compareSync(creds.password, user.password)) {
         const token = generateToken(user);
         const isCompany = Boolean(user.isCompany);
-        res.status(200).json({ message: "Welcome!", id, username, token, isCompany });
+        res.status(200).json({ message: "Welcome!",  id: user.id, username, token, isCompany });
       } else {
         res.status(401).json({ message: "NO NO NO" });
       }
