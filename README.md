@@ -123,6 +123,95 @@ The request body requires just an id in the parameters. :
 
 ---
 
+### Seeker
+
+#### Description
+
+This endpoint is responsible all CRUD operations related to non-company users AKA Seekers. A user must be logged in and isCompany should be false. 
+
+#### Create Seeker
+
+`POST` to `/seekers`
+The request body requires a name, location, user_id, description, and skills. :
+```
+ {
+       "name":"John Sam",
+       "location":"Austin, TX",
+       "skills": "React.js, HTML, CSS",
+       "description":"something",
+       "user_id": 1,
+ }
+```
+**Output Schema**:
+
+- 201 Success
+
+```
+{    
+    "id: 1
+    "name":"John Sam",
+    "location":"Austin, TX",
+    "skills": "React.js, HTML, CSS"
+    "description":"something",
+    "user_id": 1,
+}
+```
+
+#### GET Seeker
+
+`GET` to `/seekers/:user_id`
+
+You can use user id to look for a seeker profile.
+
+**Output Schema**:
+
+```
+{    
+    "id: 1
+    "name":"John Sam",
+    "location":"Austin, TX",
+    "skills": "React.js, HTML, CSS"
+    "description":"something",
+    "user_id": 1,
+}
+```
+
+#### Update Seeker
+
+`PUT` to `/seekers`
+The request body requires a name, location, user_id, description, and skills. :
+```
+ {
+       "name":"John Lex",
+       "location":"Austin, TX",
+       "skills": "React.js, HTML, CSS",
+       "description":"something",
+       "user_id": 1,
+ }
+```
+
+**Output Schema**:
+
+```
+ {
+       "name":"John Lex",
+       "location":"Austin, TX",
+       "skills": "React.js, HTML, CSS",
+       "description":"something",
+       "user_id": 1,
+ }
+```
+
+#### Remove Seeker
+
+`DELETE` to `/seekers/:user_id`
+
+**Output Schema**:
+ ```
+ {
+    "message": "Seeker has been nuked"
+ }
+
 #### Get the full list users
 `GET` to `/users`
 
