@@ -25,7 +25,9 @@ exports.up = async function(knex) {
         .string("name")
         .notNullable();
       tbl
-        .string("description")
+        .string("description");
+      tbl
+        .string("location");
       tbl
         .integer("user_id")
         .references("id")
