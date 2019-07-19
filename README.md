@@ -288,7 +288,7 @@ The request body requires a name, location, user_id and description. :
 #### Matching 
 
 <h2>Matching for seeker</h2>
-
+GET
 URL: /match/seeker/:user_id/match/job/:listing_id
 
 **Output Schema**:
@@ -300,7 +300,7 @@ URL: /match/seeker/:user_id/match/job/:listing_id
 ```
 
 <h2>Matching for jobs</h2>
-
+GET
 URL: /match/job/:id/match/seeker/:seekerId
 
 **Output Schema**:
