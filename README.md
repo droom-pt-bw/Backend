@@ -329,7 +329,7 @@ id = listing id
 }
 ```
 
-<h2> Get Matches for seekers <h2>
+<h2> Get Matches for seekers </h2>
 URL: /matched/seeker/:id
 
 id = user id
