@@ -34,7 +34,7 @@ module.exports = {
             seekerId: id,
             seekerMatch: true,
             jobMatch: false,
-            matched: false
+            matched: true
         };
         return await db('matches')
             .where({ seekerId: id, jobId })
@@ -66,7 +66,7 @@ async function jobMatch(jobId, seekerId) {
             seekerId,
             seekerMatch: false,
             jobMatch: true,
-            matched: false
+            matched: true
         };
         return await db('matches')
             .where({ jobId, seekerId })
