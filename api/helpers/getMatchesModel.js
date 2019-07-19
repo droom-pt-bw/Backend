@@ -1,5 +1,5 @@
 const db = require("../../data/dbConfig");
-const jobs = require("./joblistingModel")
+const Jobs = require("./joblistingModel")
 
 module.exports = {
 	getMatchedJobs,
@@ -16,12 +16,13 @@ async function getMatchedJobs(user_id) {
 	let jobs = matches.filter(job => job.matched);
 
 	jobs = await Promise.all(
-		jobs.map(async job => await db('joblisting').where({id: job.jobId}).first())
+		jobs.map(async job => await Jobs.getById(job.jobId))
 	);
 	return jobs;
 }
 
 async function getMatchedSeekers(jobId) {
+    
 	let matches = await db('matches').where({ jobId });
 	let seekers = matches.filter(match => match.matched);
 
