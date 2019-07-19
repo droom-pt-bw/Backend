@@ -285,6 +285,70 @@ The request body requires a name, location, user_id and description. :
     "user_id": 1,
  }
 ```
+#### Matching 
+
+<h2>Matching for seeker</h2>
+
+URL: /match/seeker/:user_id/match/job/:listing_id
+
+**Output Schema**:
+```
+{
+    "message": "Seeker has sent a match request successfully.",
+    "match": 1
+}
+```
+
+<h2>Matching for jobs</h2>
+
+URL: /match/job/:id/match/seeker/:seekerId
+
+**Output Schema**:
+```
+{
+    "message": "Job has sent a match request successfully.",
+    "match": 1
+}
+```
+
+<h2> Get Matches for jobs <h2>
+
+URL: /matched/job/:id
+
+id = listing id
+
+**Output Schema**:
+```
+{
+        "id": 1,
+        "name": "John Everyboy",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        "skills": "React.js, JavaScript, HTML, CSS, SQL ",
+        "location": "Houston, TX",
+        "user_id": 1
+}
+```
+
+<h2> Get Matches for seekers <h2>
+URL: /matched/seeker/:id
+
+id = user id
+
+**Output Schema**:
+```
+  {
+        "id": 2,
+        "company": "Mind-Corp",
+        "location": "Houston, Texas",
+        "salary": "50,000",
+        "jobtitle": "Junior Front End Developer",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        "createdAt": "2019-07-19 00:08:16",
+        "user_id": 2,
+        "appliers": null,
+        "confirmed": null
+    }
+```
 
 #### Remove Company
 

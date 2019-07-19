@@ -20,7 +20,7 @@ authRoutes(server);
 server.use("/listings", jobListing);
 server.use("/users", users);
 server.use("/companies", companies);
-server.use("/matched/matched", matched)
+server.use("/matched", matched)
 server.use("/seekers", seekers);
 server.use("/match", match)
 
