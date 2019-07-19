@@ -311,7 +311,7 @@ URL: /match/job/:id/match/seeker/:seekerId
 }
 ```
 
-<h2> Get Matches for jobs <h2>
+<h2> Get Matches for jobs </h2>
 
 URL: /matched/job/:id
 
